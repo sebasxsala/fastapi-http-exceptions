@@ -21,7 +21,7 @@ class BadRequestException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_400_BAD_REQUEST, headers=headers
+            detail=detail, status_code=status.HTTP_400_BAD_REQUEST, headers=headers
         )
 
 
@@ -42,7 +42,7 @@ class UnauthorizedException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_401_UNAUTHORIZED, headers=headers
+            detail=detail, status_code=status.HTTP_401_UNAUTHORIZED, headers=headers
         )
 
 
@@ -62,7 +62,9 @@ class ForbiddenException(HTTPException):
             Doc("Any headers to send to the client in the response."),
         ] = None,
     ):
-        super().__init__(detail, status_code=status.HTTP_403_FORBIDDEN, headers=headers)
+        super().__init__(
+            detail=detail, status_code=status.HTTP_403_FORBIDDEN, headers=headers
+        )
 
 
 class NotFoundException(HTTPException):
@@ -81,7 +83,9 @@ class NotFoundException(HTTPException):
             Doc("Any headers to send to the client in the response."),
         ] = None,
     ):
-        super().__init__(detail, status_code=status.HTTP_404_NOT_FOUND, headers=headers)
+        super().__init__(
+            detail=detail, status_code=status.HTTP_404_NOT_FOUND, headers=headers
+        )
 
 
 class MethodNotAllowedException(HTTPException):
@@ -101,7 +105,9 @@ class MethodNotAllowedException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_405_METHOD_NOT_ALLOWED, headers=headers
+            detail=detail,
+            status_code=status.HTTP_405_METHOD_NOT_ALLOWED,
+            headers=headers,
         )
 
 
@@ -122,7 +128,7 @@ class NotAcceptableException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_406_NOT_ACCEPTABLE, headers=headers
+            detail=detail, status_code=status.HTTP_406_NOT_ACCEPTABLE, headers=headers
         )
 
 
@@ -143,7 +149,7 @@ class ProxyAuthenticationRequiredException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail,
+            detail=detail,
             status_code=status.HTTP_407_PROXY_AUTHENTICATION_REQUIRED,
             headers=headers,
         )
@@ -166,7 +172,7 @@ class RequestTimeoutException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_408_REQUEST_TIMEOUT, headers=headers
+            detail=detail, status_code=status.HTTP_408_REQUEST_TIMEOUT, headers=headers
         )
 
 
@@ -186,7 +192,9 @@ class ConflictException(HTTPException):
             Doc("Any headers to send to the client in the response."),
         ] = None,
     ):
-        super().__init__(detail, status_code=status.HTTP_409_CONFLICT, headers=headers)
+        super().__init__(
+            detail=detail, status_code=status.HTTP_409_CONFLICT, headers=headers
+        )
 
 
 class GoneException(HTTPException):
@@ -205,7 +213,9 @@ class GoneException(HTTPException):
             Doc("Any headers to send to the client in the response."),
         ] = None,
     ):
-        super().__init__(detail, status_code=status.HTTP_410_GONE, headers=headers)
+        super().__init__(
+            detail=detail, status_code=status.HTTP_410_GONE, headers=headers
+        )
 
 
 class LengthRequiredException(HTTPException):
@@ -225,7 +235,7 @@ class LengthRequiredException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_411_LENGTH_REQUIRED, headers=headers
+            detail=detail, status_code=status.HTTP_411_LENGTH_REQUIRED, headers=headers
         )
 
 
@@ -246,7 +256,9 @@ class PreconditionFailedException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_412_PRECONDITION_FAILED, headers=headers
+            detail=detail,
+            status_code=status.HTTP_412_PRECONDITION_FAILED,
+            headers=headers,
         )
 
 
@@ -267,7 +279,7 @@ class RequestEntityTooLargeException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail,
+            detail=detail,
             status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
             headers=headers,
         )
@@ -290,7 +302,9 @@ class RequestUriTooLongException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_414_REQUEST_URI_TOO_LONG, headers=headers
+            detail=detail,
+            status_code=status.HTTP_414_REQUEST_URI_TOO_LONG,
+            headers=headers,
         )
 
 
@@ -311,7 +325,9 @@ class UnsupportedMediaTypeException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE, headers=headers
+            detail=detail,
+            status_code=status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            headers=headers,
         )
 
 
@@ -332,7 +348,7 @@ class RequestedRangeNotSatisfiableException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail,
+            detail=detail,
             status_code=status.HTTP_416_REQUESTED_RANGE_NOT_SATISFIABLE,
             headers=headers,
         )
@@ -355,7 +371,9 @@ class ExpectationFailedException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_417_EXPECTATION_FAILED, headers=headers
+            detail=detail,
+            status_code=status.HTTP_417_EXPECTATION_FAILED,
+            headers=headers,
         )
 
 
@@ -376,7 +394,7 @@ class ImATeapotException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_418_IM_A_TEAPOT, headers=headers
+            detail=detail, status_code=status.HTTP_418_IM_A_TEAPOT, headers=headers
         )
 
 
@@ -397,7 +415,9 @@ class MisdirectedRequestException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_421_MISDIRECTED_REQUEST, headers=headers
+            detail=detail,
+            status_code=status.HTTP_421_MISDIRECTED_REQUEST,
+            headers=headers,
         )
 
 
@@ -418,7 +438,9 @@ class UnprocessableEntityException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, headers=headers
+            detail=detail,
+            status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            headers=headers,
         )
 
 
@@ -438,7 +460,9 @@ class LockedException(HTTPException):
             Doc("Any headers to send to the client in the response."),
         ] = None,
     ):
-        super().__init__(detail, status_code=status.HTTP_423_LOCKED, headers=headers)
+        super().__init__(
+            detail=detail, status_code=status.HTTP_423_LOCKED, headers=headers
+        )
 
 
 class FailedDependencyException(HTTPException):
@@ -458,7 +482,9 @@ class FailedDependencyException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_424_FAILED_DEPENDENCY, headers=headers
+            detail=detail,
+            status_code=status.HTTP_424_FAILED_DEPENDENCY,
+            headers=headers,
         )
 
 
@@ -479,7 +505,7 @@ class UpgradeRequiredException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_426_UPGRADE_REQUIRED, headers=headers
+            detail=detail, status_code=status.HTTP_426_UPGRADE_REQUIRED, headers=headers
         )
 
 
@@ -500,7 +526,9 @@ class PreconditionRequiredException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_428_PRECONDITION_REQUIRED, headers=headers
+            detail=detail,
+            status_code=status.HTTP_428_PRECONDITION_REQUIRED,
+            headers=headers,
         )
 
 
@@ -521,7 +549,9 @@ class TooManyRequestsException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail, status_code=status.HTTP_429_TOO_MANY_REQUESTS, headers=headers
+            detail=detail,
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            headers=headers,
         )
 
 
@@ -542,7 +572,7 @@ class RequestHeaderFieldsTooLargeException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail,
+            detail=detail,
             status_code=status.HTTP_431_REQUEST_HEADER_FIELDS_TOO_LARGE,
             headers=headers,
         )
@@ -565,7 +595,7 @@ class UnavailableForLegalReasonsException(HTTPException):
         ] = None,
     ):
         super().__init__(
-            detail,
+            detail=detail,
             status_code=status.HTTP_451_UNAVAILABLE_FOR_LEGAL_REASONS,
             headers=headers,
         )
