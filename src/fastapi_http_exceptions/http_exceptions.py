@@ -1,35 +1,10 @@
-from starlette.exceptions import HTTPException as StarletteHTTPException
+from fastapi.exceptions import HTTPException
 from typing import Any, Dict, Optional
 from typing_extensions import Annotated, Doc
 from . import status
 
 
-class HTTPException(StarletteHTTPException):
-    """
-    An HTTP exception you can raise in your own code to show errors to the client.
-
-    This is for client errors, invalid authentication, invalid data, etc. Not for server
-    errors in your code.
-    """
-
-    def __init__(
-        self,
-        status_code: int,
-        detail: Annotated[
-            Any,
-            Doc(
-                "Any data to be sent to the client in the `detail` key of the JSON response."
-            ),
-        ] = None,
-        headers: Annotated[
-            Optional[Dict[str, str]],
-            Doc("Any headers to send to the client in the response."),
-        ] = None,
-    ):
-        super().__init__(detail, status_code=status_code, headers=headers)
-
-
-class BadRequestException(StarletteHTTPException):
+class BadRequestException(HTTPException):
     """Bad Request (400): The server could not understand the request due to invalid syntax."""
 
     def __init__(
@@ -50,7 +25,7 @@ class BadRequestException(StarletteHTTPException):
         )
 
 
-class UnauthorizedException(StarletteHTTPException):
+class UnauthorizedException(HTTPException):
     """Unauthorized (401): The client must authenticate itself to get the requested response."""
 
     def __init__(
@@ -71,7 +46,7 @@ class UnauthorizedException(StarletteHTTPException):
         )
 
 
-class ForbiddenException(StarletteHTTPException):
+class ForbiddenException(HTTPException):
     """Forbidden (403): The client does not have access rights to the content."""
 
     def __init__(
@@ -90,7 +65,7 @@ class ForbiddenException(StarletteHTTPException):
         super().__init__(detail, status_code=status.HTTP_403_FORBIDDEN, headers=headers)
 
 
-class NotFoundException(StarletteHTTPException):
+class NotFoundException(HTTPException):
     """Not Found (404): The server can not find the requested resource."""
 
     def __init__(
@@ -109,7 +84,7 @@ class NotFoundException(StarletteHTTPException):
         super().__init__(detail, status_code=status.HTTP_404_NOT_FOUND, headers=headers)
 
 
-class MethodNotAllowedException(StarletteHTTPException):
+class MethodNotAllowedException(HTTPException):
     """Method Not Allowed (405): The method is not allowed for the requested resource."""
 
     def __init__(
@@ -130,7 +105,7 @@ class MethodNotAllowedException(StarletteHTTPException):
         )
 
 
-class NotAcceptableException(StarletteHTTPException):
+class NotAcceptableException(HTTPException):
     """Not Acceptable (406): The resource is capable of generating only content not acceptable according to the Accept headers sent in the request."""
 
     def __init__(
@@ -151,7 +126,7 @@ class NotAcceptableException(StarletteHTTPException):
         )
 
 
-class ProxyAuthenticationRequiredException(StarletteHTTPException):
+class ProxyAuthenticationRequiredException(HTTPException):
     """Proxy Authentication Required (407): The client must authenticate itself to use a proxy."""
 
     def __init__(
@@ -174,7 +149,7 @@ class ProxyAuthenticationRequiredException(StarletteHTTPException):
         )
 
 
-class RequestTimeoutException(StarletteHTTPException):
+class RequestTimeoutException(HTTPException):
     """Request Timeout (408): The server did not receive a complete request in time."""
 
     def __init__(
@@ -195,7 +170,7 @@ class RequestTimeoutException(StarletteHTTPException):
         )
 
 
-class ConflictException(StarletteHTTPException):
+class ConflictException(HTTPException):
     """Conflict (409): The request could not be completed due to a conflict with the current state of the target resource."""
 
     def __init__(
@@ -214,7 +189,7 @@ class ConflictException(StarletteHTTPException):
         super().__init__(detail, status_code=status.HTTP_409_CONFLICT, headers=headers)
 
 
-class GoneException(StarletteHTTPException):
+class GoneException(HTTPException):
     """Gone (410): The resource requested is no longer available and will not be available again."""
 
     def __init__(
@@ -233,7 +208,7 @@ class GoneException(StarletteHTTPException):
         super().__init__(detail, status_code=status.HTTP_410_GONE, headers=headers)
 
 
-class LengthRequiredException(StarletteHTTPException):
+class LengthRequiredException(HTTPException):
     """Length Required (411): The server refuses to accept the request without a defined content length."""
 
     def __init__(
@@ -254,7 +229,7 @@ class LengthRequiredException(StarletteHTTPException):
         )
 
 
-class PreconditionFailedException(StarletteHTTPException):
+class PreconditionFailedException(HTTPException):
     """Precondition Failed (412): The server does not meet one of the preconditions specified by the client in the request headers."""
 
     def __init__(
@@ -275,7 +250,7 @@ class PreconditionFailedException(StarletteHTTPException):
         )
 
 
-class RequestEntityTooLargeException(StarletteHTTPException):
+class RequestEntityTooLargeException(HTTPException):
     """Request Entity Too Large (413): The server is refusing to process a request because the entity is too large."""
 
     def __init__(
@@ -298,7 +273,7 @@ class RequestEntityTooLargeException(StarletteHTTPException):
         )
 
 
-class RequestUriTooLongException(StarletteHTTPException):
+class RequestUriTooLongException(HTTPException):
     """Request URI Too Long (414): The URI requested by the client is longer than the server is willing to process."""
 
     def __init__(
@@ -319,7 +294,7 @@ class RequestUriTooLongException(StarletteHTTPException):
         )
 
 
-class UnsupportedMediaTypeException(StarletteHTTPException):
+class UnsupportedMediaTypeException(HTTPException):
     """Unsupported Media Type (415): The server refuses to process the request because the media type is not supported."""
 
     def __init__(
@@ -340,7 +315,7 @@ class UnsupportedMediaTypeException(StarletteHTTPException):
         )
 
 
-class RequestedRangeNotSatisfiableException(StarletteHTTPException):
+class RequestedRangeNotSatisfiableException(HTTPException):
     """Requested Range Not Satisfiable (416): The range specified by the client in the Range header is invalid."""
 
     def __init__(
@@ -363,7 +338,7 @@ class RequestedRangeNotSatisfiableException(StarletteHTTPException):
         )
 
 
-class ExpectationFailedException(StarletteHTTPException):
+class ExpectationFailedException(HTTPException):
     """Expectation Failed (417): The server cannot meet the requirements of the Expect header."""
 
     def __init__(
@@ -384,7 +359,7 @@ class ExpectationFailedException(StarletteHTTPException):
         )
 
 
-class ImATeapotException(StarletteHTTPException):
+class ImATeapotException(HTTPException):
     """I'm a teapot (418): The server is a teapot and cannot brew coffee."""
 
     def __init__(
@@ -405,7 +380,7 @@ class ImATeapotException(StarletteHTTPException):
         )
 
 
-class MisdirectedRequestException(StarletteHTTPException):
+class MisdirectedRequestException(HTTPException):
     """Misdirected Request (421): The request was directed at the wrong server."""
 
     def __init__(
@@ -426,7 +401,7 @@ class MisdirectedRequestException(StarletteHTTPException):
         )
 
 
-class UnprocessableEntityException(StarletteHTTPException):
+class UnprocessableEntityException(HTTPException):
     """Unprocessable Entity (422): The server understands the content type of the request entity, but was unable to process the contained instructions."""
 
     def __init__(
@@ -447,7 +422,7 @@ class UnprocessableEntityException(StarletteHTTPException):
         )
 
 
-class LockedException(StarletteHTTPException):
+class LockedException(HTTPException):
     """Locked (423): The resource that is being accessed is locked."""
 
     def __init__(
@@ -466,7 +441,7 @@ class LockedException(StarletteHTTPException):
         super().__init__(detail, status_code=status.HTTP_423_LOCKED, headers=headers)
 
 
-class FailedDependencyException(StarletteHTTPException):
+class FailedDependencyException(HTTPException):
     """Failed Dependency (424): The request failed due to failure of a previous request."""
 
     def __init__(
@@ -487,7 +462,7 @@ class FailedDependencyException(StarletteHTTPException):
         )
 
 
-class UpgradeRequiredException(StarletteHTTPException):
+class UpgradeRequiredException(HTTPException):
     """Upgrade Required (426): The client should switch to a different protocol."""
 
     def __init__(
@@ -508,7 +483,7 @@ class UpgradeRequiredException(StarletteHTTPException):
         )
 
 
-class PreconditionRequiredException(StarletteHTTPException):
+class PreconditionRequiredException(HTTPException):
     """Precondition Required (428): The server requires the request to be conditional."""
 
     def __init__(
@@ -529,7 +504,7 @@ class PreconditionRequiredException(StarletteHTTPException):
         )
 
 
-class TooManyRequestsException(StarletteHTTPException):
+class TooManyRequestsException(HTTPException):
     """Too Many Requests (429): The user has sent too many requests in a given amount of time."""
 
     def __init__(
@@ -550,7 +525,7 @@ class TooManyRequestsException(StarletteHTTPException):
         )
 
 
-class RequestHeaderFieldsTooLargeException(StarletteHTTPException):
+class RequestHeaderFieldsTooLargeException(HTTPException):
     """Request Header Fields Too Large (431): The server refuses to process the request because the header fields are too large."""
 
     def __init__(
@@ -573,7 +548,7 @@ class RequestHeaderFieldsTooLargeException(StarletteHTTPException):
         )
 
 
-class UnavailableForLegalReasonsException(StarletteHTTPException):
+class UnavailableForLegalReasonsException(HTTPException):
     """Unavailable For Legal Reasons (451): The resource is unavailable for legal reasons."""
 
     def __init__(

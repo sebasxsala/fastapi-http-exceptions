@@ -1,17 +1,17 @@
-# Custom HTTP Exceptions for Starlette
+# Custom HTTP Exceptions for FastAPI
 
 ## Project Description
-This library provides a set of custom HTTP exceptions for Starlette applications, inspired by Starlette's built-in exceptions. With these custom exceptions, you can simplify error handling by using pre-configured, standard HTTP exception classes tailored to common HTTP status codes.
+This library provides a set of custom HTTP exceptions for FastAPI applications, inspired by FastAPI's built-in exceptions. With these custom exceptions, you can simplify error handling by using pre-configured, standard HTTP exception classes tailored to common HTTP status codes.
 
 ## Installation
 To get started, simply install the package via pip:
 
 ```bash
-pip install starlette-http-exceptions
+pip install fastapi-http-exceptions
 ```
 
 ## Usage
-Instead of duplicating exception handling code throughout your Starlette application, you can use the pre-defined exceptions from this library. 
+Instead of duplicating exception handling code throughout your FastAPI application, you can use the pre-defined exceptions from this library. 
 Raise these exceptions directly without worrying about writing boilerplate code for every status code.
 
 ### Example 1: Raising Unauthorized Exception
@@ -30,7 +30,7 @@ raise HTTPException(
 You can import and use a pre-configured exception like this:
 
 ```python
-from starlette_http_exceptions import UnauthorizedException
+from fastapi_http_exceptions import UnauthorizedException
 
 # Some application logic...
 raise UnauthorizedException(

@@ -1,18 +1,18 @@
 [project]
-name = "starlette-http-exceptions"
-version = "0.1.1"
+name = "fastapi-http-exceptions"
+version = "0.0.1"
 authors = [
   { name = "Sebastian Sala", email = "sebastian.sala.alanis@hotmail.com" },
 ]
-description = "A library for handling HTTP exceptions in Starlette applications, providing a set of predefined exceptions for common HTTP error statuses like 404, 403, 401, etc., to make error handling in APIs more streamlined and maintainable."
+description = "A library for handling HTTP exceptions in FastAPI applications, providing a set of predefined exceptions for common HTTP error statuses like 404, 403, 401, etc., to make error handling in APIs more streamlined and maintainable."
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "starlette>=0.35.0",
+    "fastapi>=0.115.0",
 ]
 
 [tool.setuptools.package-data]
-"starlette_http_exceptions" = ["README.md"] 
+"fastapi_http_exceptions" = ["README.md"] 
 
 [dependency-groups]
 dev = [
@@ -20,5 +20,5 @@ dev = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/sebasxsala/starlette-http-exceptions"
-"Bug Tracker" = "https://github.com/sebasxsala/starlette-http-exceptions/issues"
+"Homepage" = "https://github.com/sebasxsala/fastapi-http-exceptions"
+"Bug Tracker" = "https://github.com/sebasxsala/fastapi-http-exceptions/issues"
